@@ -21,160 +21,284 @@ st.set_page_config(
     layout="wide"
 )
 st.markdown("""
-    <style>
+  <style>
+    /* ── IMPORT FONT ─────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+ 
+    /* ── GLOBAL RESET & BODY ─────────────────────────────── */
+    html, body, [class*="css"], .stApp {
+        font-family: 'Nunito', sans-serif !important;
+        background-color: #FDF2F8 !important;
     }
-
-    /* 2. SIDEBAR SEBAGAI NAVIGASI & FILTER INTERAKTIF (SLICER) */
+ 
+    /* ── BACKGROUND PATTERN (polka dots subtle) ──────────── */
+    .stApp {
+        background-image: radial-gradient(circle, #F9A8D4 1px, transparent 1px) !important;
+        background-size: 32px 32px !important;
+        background-color: #FDF2F8 !important;
+    }
+ 
+    /* ── SIDEBAR ─────────────────────────────────────────── */
     [data-testid="stSidebar"] {
-        background-color: #1E293B !important;
-        border-right: 1px solid #334155 !important;
+        background: linear-gradient(180deg, #BE185D 0%, #9D174D 40%, #831843 100%) !important;
+        border-right: 3px solid #F472B6 !important;
+        box-shadow: 4px 0 20px rgba(190,24,93,0.3) !important;
     }
-    
-    /* Mengubah Widget Slicer/Input Parameter di Sidebar Menjadi Kotak Rapi */
+ 
+    /* Semua blok kontrol di sidebar */
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
-        background-color: #0F172A !important;
-        padding: 18px 14px !important;
-        border-radius: 10px !important;
-        border: 1px solid #334155 !important;
-        margin-bottom: 14px !important;
+        background: rgba(255,255,255,0.10) !important;
+        padding: 16px 14px !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        margin-bottom: 12px !important;
+        backdrop-filter: blur(4px) !important;
     }
-    
-    /* Memaksa teks label di dalam Filter/Slicer berwarna putih/terang */
-    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
-    [data-testid="stSidebar"] h3, [data-testid="stSidebar"] .stWidgetLabel p, 
-    [data-testid="stSidebar"] p {
-        color: #F1F5F9 !important;
-        font-weight: 600 !important;
+ 
+    /* Label & teks di sidebar */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] .stWidgetLabel p,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label {
+        color: #FCE7F3 !important;
+        font-weight: 700 !important;
+        font-family: 'Nunito', sans-serif !important;
     }
-
-    /* 3. MEROMBAK UTUH TOMBOL UPLOAD MENJADI BIRU GRADASI GLOSSY (SESUAI GAMBAR BARU) */
+ 
+    /* Divider di sidebar */
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255,255,255,0.25) !important;
+    }
+ 
+    /* ── TOMBOL BROWSE FILES ─────────────────────────────── */
     [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] {
-        background-color: #0F172A !important;
-        border: 2px dashed #334155 !important;
-        border-radius: 12px !important;
-        padding: 15px !important;
-        transition: all 0.3s ease;
+        background: rgba(255,255,255,0.12) !important;
+        border: 2px dashed rgba(255,255,255,0.4) !important;
+        border-radius: 14px !important;
+        padding: 14px !important;
     }
-    
-    /* Mengubah Tombol "Browse files" Menjadi Kapsul Biru Mengilap 3D */
+ 
     [data-testid="stSidebar"] button[data-testid="baseButton-secondary"] {
-        background: linear-gradient(180deg, #A7F3D0 0%, #4793AF 25%, #227B94 75%, #164E63 100%) !important;
+        background: linear-gradient(135deg, #FB7185 0%, #F43F5E 50%, #E11D48 100%) !important;
         color: #FFFFFF !important;
-        border: 1px solid #155E75 !important;
-        font-family: 'Segoe UI', Arial, sans-serif !important;
-        font-weight: 800 !important;
-        font-size: 1.1rem !important;
-        letter-spacing: 2px !important;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important;
-        border-radius: 50px !important; /* Membuat bentuk melengkung kapsul sempurna */
+        border: 2px solid #FDA4AF !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 900 !important;
+        font-size: 0.95rem !important;
+        letter-spacing: 1.5px !important;
+        border-radius: 50px !important;
         width: 100% !important;
         padding: 10px 20px !important;
-        box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.4) !important;
+        box-shadow: 0 4px 15px rgba(244,63,94,0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
         text-transform: uppercase !important;
-        transition: all 0.2s ease-in-out !important;
+        transition: all 0.2s ease !important;
     }
-
-    /* Efek Interaktif Saat Kursor Mouse Berada di Atas Tombol Upload */
+ 
     [data-testid="stSidebar"] button[data-testid="baseButton-secondary"]:hover {
-        background: linear-gradient(180deg, #C6F6D5 0%, #54A3BF 25%, #2B8C9F 75%, #1A586E 100%) !important;
-        box-shadow: inset 0 2px 4px rgba(255,255,255,0.6), 0 6px 12px rgba(34,123,148,0.5) !important;
-        transform: translateY(-1px);
-        cursor: pointer;
+        background: linear-gradient(135deg, #FCA5A5 0%, #FB7185 50%, #F43F5E 100%) !important;
+        box-shadow: 0 6px 20px rgba(244,63,94,0.6) !important;
+        transform: translateY(-2px) !important;
     }
-
-    /* Memperbaiki Warna Teks Ukuran File Bawaan Agar Terlihat Jelas di Latar Gelap */
+ 
     [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] small,
     [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] small {
-        color: #94A3B8 !important;
-        font-weight: 500 !important;
-    }
-
-    /* 4. BANNER JUDUL UTAMA DASHBOARD */
-    h1 {
-        color: #FFFFFF !important;
-        background: linear-gradient(90deg, #1E293B 0%, #0F172A 100%) !important;
-        padding: 20px 24px !important;
-        border-radius: 10px !important;
-        border: 1px solid #334155 !important;
-        font-family: 'Segoe UI', Roboto, sans-serif;
-        font-weight: 700;
-        font-size: 1.8rem !important;
-        letter-spacing: -0.5px;
-        margin-bottom: 25px !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    h2, h3, .stMarkdown h2 p {
-        color: #38BDF8 !important;
+        color: #FBCFE8 !important;
         font-weight: 600 !important;
     }
-
-    /* 5. VISUAL UTAMA: KARTU WADAH GRAFIK LINE CHART & TABEL */
-    div[data-testid="stPlotlyChart"], 
+ 
+    /* ── JUDUL UTAMA (h1) ────────────────────────────────── */
+    h1 {
+        color: #9D174D !important;
+        background: linear-gradient(135deg, #FFFFFF 0%, #FCE7F3 100%) !important;
+        padding: 22px 28px !important;
+        border-radius: 20px !important;
+        border: 2px solid #F9A8D4 !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-weight: 900 !important;
+        font-size: 2rem !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 28px !important;
+        box-shadow: 0 8px 25px rgba(244,114,182,0.2), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+        position: relative !important;
+    }
+ 
+    /* ── H2 / H3 ─────────────────────────────────────────── */
+    h2, h3, .stMarkdown h2 p {
+        color: #BE185D !important;
+        font-weight: 800 !important;
+        font-family: 'Nunito', sans-serif !important;
+    }
+ 
+    /* ── KARTU GRAFIK & DATAFRAME ────────────────────────── */
+    div[data-testid="stPlotlyChart"],
     div[data-testid="stDataFrame"],
     .stTable {
-        background-color: #1E293B !important;
-        padding: 20px !important;
-        border-radius: 12px !important;
-        border: 1px solid #334155 !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+        background: linear-gradient(135deg, #FFFFFF 0%, #FDF2F8 100%) !important;
+        padding: 22px !important;
+        border-radius: 20px !important;
+        border: 2px solid #FBCFE8 !important;
+        box-shadow: 0 8px 30px rgba(244,114,182,0.15) !important;
         margin-bottom: 20px !important;
     }
-
-    /* 6. PENATAAN TABEL AREA DATA */
-    div[data-testid="stDataFrame"] iframe, 
-    div[data-testid="stDataFrame"] data-grid {
-        background-color: #1E293B !important; 
-    }
-    .stDataFrame td, .stDataFrame th {
-        color: #E2E8F0 !important;
-    }
-
-    /* 7. INDIKATOR KPI */
+ 
+    /* ── KPI METRIC ──────────────────────────────────────── */
     [data-testid="stMetricValue"] {
-        background-color: #1E293B !important;
-        padding: 15px 20px !important;
-        border-radius: 10px !important;
-        border: 1px solid #334155 !important;
-        color: #38BDF8 !important;
-        font-weight: 800 !important;
-        font-size: 2rem !important;
+        background: linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 100%) !important;
+        padding: 16px 20px !important;
+        border-radius: 14px !important;
+        border: 2px solid #F9A8D4 !important;
+        color: #BE185D !important;
+        font-weight: 900 !important;
+        font-size: 1.8rem !important;
+        font-family: 'Space Mono', monospace !important;
+        box-shadow: 0 4px 12px rgba(244,114,182,0.15) !important;
     }
+ 
     [data-testid="stMetricLabel"] p {
-        color: #94A3B8 !important;
-        font-weight: 600 !important;
+        color: #DB2777 !important;
+        font-weight: 800 !important;
         text-transform: uppercase;
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 1px !important;
+        font-family: 'Nunito', sans-serif !important;
     }
-
-    /* 8. TOMBOL EKSEKUSI UTAMA (PROSES PERAMALAN) */
-    .stButton>button {
-        width: 100%;
-        border-radius: 8px;
-        background: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
+ 
+    [data-testid="metric-container"] {
+        background: linear-gradient(135deg, #FFFFFF 0%, #FCE7F3 100%) !important;
+        border-radius: 16px !important;
+        border: 2px solid #FBCFE8 !important;
+        padding: 12px !important;
+        box-shadow: 0 4px 15px rgba(244,114,182,0.1) !important;
+    }
+ 
+    /* ── TOMBOL PROSES PERAMALAN ─────────────────────────── */
+    .stButton > button {
+        width: 100% !important;
+        border-radius: 50px !important;
+        background: linear-gradient(135deg, #FB7185 0%, #F43F5E 40%, #E11D48 100%) !important;
         color: white !important;
-        font-weight: 700;
-        border: none;
-        padding: 12px 20px;
-        box-shadow: 0 4px 12 rgba(14, 165, 233, 0.2);
-        transition: all 0.2s;
+        font-weight: 900 !important;
+        font-family: 'Nunito', sans-serif !important;
+        font-size: 1rem !important;
+        letter-spacing: 1px !important;
+        text-transform: uppercase !important;
+        border: none !important;
+        padding: 14px 24px !important;
+        box-shadow: 0 6px 20px rgba(244,63,94,0.45), inset 0 1px 0 rgba(255,255,255,0.25) !important;
+        transition: all 0.25s ease !important;
     }
-    .stButton>button:hover {
-        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-        transform: translateY(-1px);
+ 
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #FCA5A5 0%, #FB7185 40%, #F43F5E 100%) !important;
+        box-shadow: 0 8px 28px rgba(244,63,94,0.55) !important;
+        transform: translateY(-2px) !important;
     }
-
-    /* 9. NOTIFIKASI INFORMASI (ALERT BOX) */
+ 
+    /* ── ALERT / NOTIFIKASI ──────────────────────────────── */
     .stAlert {
-        border-radius: 10px !important;
-        background-color: #1E293B !important;
-        border: 1px solid #38BDF8 !important;
+        border-radius: 14px !important;
+        background: linear-gradient(135deg, #FFF1F2 0%, #FCE7F3 100%) !important;
+        border: 2px solid #FDA4AF !important;
+        box-shadow: 0 4px 12px rgba(244,114,182,0.15) !important;
     }
+ 
     .stAlert p {
-        color: #38BDF8 !important;
+        color: #BE185D !important;
+        font-weight: 700 !important;
+    }
+ 
+    /* ── SUCCESS BOX ─────────────────────────────────────── */
+    .stSuccess {
+        background: linear-gradient(135deg, #FFF1F2 0%, #FCE7F3 100%) !important;
+        border: 2px solid #F472B6 !important;
+        border-radius: 14px !important;
+    }
+ 
+    /* ── TABS ────────────────────────────────────────────── */
+    .stTabs [data-baseweb="tab-list"] {
+        background: linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 100%) !important;
+        border-radius: 50px !important;
+        padding: 6px !important;
+        border: 2px solid #FBCFE8 !important;
+        gap: 4px !important;
+    }
+ 
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 50px !important;
+        color: #9D174D !important;
+        font-weight: 700 !important;
+        font-family: 'Nunito', sans-serif !important;
+        padding: 10px 20px !important;
+        transition: all 0.2s !important;
+    }
+ 
+    .stTabs [aria-selected="true"] {
+        background: linear-gradient(135deg, #F43F5E 0%, #BE185D 100%) !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 12px rgba(244,63,94,0.4) !important;
+    }
+ 
+    /* ── SELECTBOX & NUMBER INPUT ────────────────────────── */
+    [data-testid="stSidebar"] .stSelectbox > div > div,
+    [data-testid="stSidebar"] .stNumberInput > div > div > input,
+    [data-testid="stSidebar"] .stTextInput > div > div > input,
+    [data-testid="stSidebar"] .stSlider {
+        background: rgba(255,255,255,0.15) !important;
+        border-radius: 10px !important;
+        color: #FCE7F3 !important;
+    }
+ 
+    /* ── EXPANDER ────────────────────────────────────────── */
+    .streamlit-expanderHeader {
+        background: linear-gradient(135deg, #FCE7F3 0%, #FDF2F8 100%) !important;
+        border-radius: 12px !important;
+        border: 2px solid #FBCFE8 !important;
+        color: #BE185D !important;
+        font-weight: 700 !important;
+        font-family: 'Nunito', sans-serif !important;
+    }
+ 
+    /* ── DOWNLOAD BUTTON ─────────────────────────────────── */
+    .stDownloadButton > button {
+        background: linear-gradient(135deg, #A855F7 0%, #9333EA 100%) !important;
+        color: white !important;
+        border-radius: 50px !important;
+        border: none !important;
+        font-weight: 800 !important;
+        font-family: 'Nunito', sans-serif !important;
+        box-shadow: 0 4px 15px rgba(168,85,247,0.4) !important;
+    }
+ 
+    .stDownloadButton > button:hover {
+        background: linear-gradient(135deg, #C084FC 0%, #A855F7 100%) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(168,85,247,0.5) !important;
+    }
+ 
+    /* ── CONTAINER BORDER ────────────────────────────────── */
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        background: linear-gradient(135deg, #FFFFFF 0%, #FDF2F8 100%) !important;
+        border-radius: 18px !important;
+        border: 2px solid #FBCFE8 !important;
+        padding: 4px !important;
+        box-shadow: 0 6px 20px rgba(244,114,182,0.12) !important;
+    }
+ 
+    /* ── SCROLLBAR ───────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #FCE7F3; }
+    ::-webkit-scrollbar-thumb { background: #F472B6; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #BE185D; }
+ 
+    /* ── INFO BOX ────────────────────────────────────────── */
+    .stInfo {
+        background: linear-gradient(135deg, #EFF6FF 0%, #FCE7F3 100%) !important;
+        border: 2px solid #F9A8D4 !important;
+        border-radius: 14px !important;
     }
     </style>
-    """, unsafe_allow_html=True)
 def clean_numeric_series(series: pd.Series) -> pd.Series:
     numeric = pd.to_numeric(series, errors="coerce")
     return numeric.dropna().astype(float)
