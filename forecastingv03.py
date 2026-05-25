@@ -24,115 +24,126 @@ st.set_page_config(
 # Suntikan CSS untuk mengubah tampilan dasar
 st.markdown("""
     <style>
-    /* 1. Mengubah Background Utama Sidebar */
-    [data-testid="stSidebar"] {
-        background-color: #F8FAFC !important;
-        border-right: 2px solid #E2E8F0;
-    }
-    
-    /* 2. Membuat Kotak Biru Keren untuk Setiap Widget di Sidebar */
-    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
-        background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%) !important;
-        padding: 20px 15px !important;
-        border-radius: 14px !important;
-        border: 1px solid #BFDBFE !important;
-        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.05) !important;
-        margin-bottom: 15px !important;
-    }
-    
-    [data-testid="stSidebar"] hr {
-        margin: 10px 0 !important;
-        border-color: #BFDBFE !important;
+    /* 1. MENGUBAH BACKGROUND UTAMA APLIKASI (Layout Grid Abu-abu Ringan) */
+    .stApp {
+        background-color: #F1F5F9 !important;
     }
 
+    /* 2. SIDEBAR BIRU TUA EMONASIONAL (Sama seperti contoh gambar Holly Food) */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #1E3A8A 0%, #172554 100%) !important;
+        border-right: none;
+    }
+    
+    /* Membuat Kotak Putih Kontras untuk Menu di Dalam Sidebar */
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        padding: 16px 14px !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        margin-bottom: 12px !important;
+    }
+    
+    /* Memaksa Semua Teks di Sidebar Berwarna Putih Bersih & Cerah */
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, 
     [data-testid="stSidebar"] .stWidgetLabel p,
-    [data-testid="stSidebar"] p {
-        color: #1E3A8A !important;
-        font-weight: 700 !important;
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] blockquote,
+    [data-testid="stSidebar"] .stMarkdown {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Khusus teks caption kecil di bawah file uploader */
+    [data-testid="stSidebar"] data-testid="stMarkdownContainer" small {
+        color: #93C5FD !important;
     }
 
-    /* 3. Mengubah Font dan Warna Judul Utama (Efek Gradient Biru-Cyan) */
+    /* 3. HEADER UTAMA DASHBOARD (Banner Biru Panjang Mewah di Bagian Atas) */
     h1 {
-        color: #1E3A8A !important; 
+        color: #FFFFFF !important;
+        background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%) !important;
+        padding: 16px 24px !important;
+        border-radius: 12px !important;
         font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
         font-weight: 800;
-        letter-spacing: -0.8px;
-        background: linear-gradient(90deg, #1E40AF, #06B6D4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding-bottom: 10px;
+        font-size: 2rem !important;
+        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2) !important;
+        margin-bottom: 25px !important;
     }
     
     h2, h3 {
         color: #0F172A !important;
         font-weight: 700 !important;
+        margin-top: 15px !important;
     }
 
-    /* 4. TAMPILAN TABEL DENGAN SHADING WARNA BIRU (BARU) */
-    /* Mewarnai Header Tabel menjadi Biru Navy */
-    div[data-testid="stDataFrame"] iframe, 
-    div[data-testid="stDataFrame"] data-grid,
-    .stDataFrame th {
-        background-color: #1E40AF !important;
-        color: white !important;
-    }
-    
-    /* Sentuhan custom menggunakan selector internal Streamlit Glide Data Grid */
-    div[data-testid="stDataFrame"] {
-        border-radius: 12px !important;
-        overflow: hidden !important;
-        border: 1px solid #BFDBFE !important;
-        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.05) !important;
+    /* 4. MEMBUAT BLOK KONTEN UTAMA MENJADI KARTU TIMBUL (Card-Based Dashboard) */
+    /* Mengubah penampung grafik, preview tabel, dan ringkasan menjadi objek kartu putih */
+    div[data-testid="stPlotlyChart"], 
+    div[data-testid="stDataFrame"],
+    .stTable,
+    [data-element-id="stBlock"] {
+        background-color: #FFFFFF !important;
+        padding: 15px !important;
+        border-radius: 14px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+        border: 1px solid #E2E8F0 !important;
     }
 
-    /* 5. Membuat "Card" untuk Metrik Ringkasan Data */
+    /* 5. METRIK RINGKASAN DATA (Angka Bold & Desain Kotak Putih Bersih) */
     [data-testid="stMetricValue"] {
         background-color: #FFFFFF !important;
-        padding: 20px !important;
+        padding: 15px 20px !important;
         border-radius: 12px !important;
-        box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.1) !important;
-        border: 2px solid #E0F2FE !important;
-        color: #2563EB !important; 
-        font-weight: 700 !important;
+        box-shadow: 0 10px 15px -3px rgba(30, 64, 175, 0.05) !important;
+        border: 2px solid #DBEAFE !important;
+        color: #1E40AF !important; 
+        font-weight: 800 !important;
+        font-size: 1.8rem !important;
     }
     
     [data-testid="stMetricLabel"] p {
-        color: #334155 !important;
-        font-weight: 600 !important;
+        color: #475569 !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
-    /* 6. Mempercantik Tombol Proses Peramalan (Electric Blue) */
+    /* 6. TOMBOL PROSES (Warna Hijau Emerald Sukses/Biru Terang Berkilau) */
     .stButton>button {
         width: 100%;
         border-radius: 10px;
-        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
         color: white !important;
         font-weight: 700;
         font-size: 1rem;
         border: none;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         padding: 12px 24px;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
     }
     
     .stButton>button:hover {
-        background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
-        box-shadow: 0 6px 20px 0 rgba(29, 78, 216, 0.6);
-        transform: translateY(-2px);
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        box-shadow: 0 6px 18px rgba(5, 150, 105, 0.5);
+        transform: translateY(-1px);
         color: white !important;
     }
 
-    /* 7. Styling Kotak Keterangan Alert agar Teks Tetap Jelas */
+    /* 7. KOTAK PESAN (ST.INFO / ST.WARNING) AGAR SENADA DENGAN ELEMEN LAIN */
     .stAlert {
         border-radius: 12px !important;
-        border-left: 6px solid !important;
+        border: none !important;
+        border-left: 6px solid #3B82F6 !important;
+        background-color: #EFF6FF !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
     }
     .stAlert p {
-        color: #0F172A !important;
-        font-weight: 500 !important;
+        color: #1E3A8A !important;
+        font-weight: 600 !important;
     }
     </style>
     """, unsafe_allow_html=True)
