@@ -22,15 +22,6 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-    /* 1. ATUR TAMPILAN LATAR BELAKANG GELAP MODERN (AREA DASHBOARD INTERAKTIF) */
-    .stApp {
-        background-color: #0F172A !important;
-        color: #F8FAFC !important;
-    }
-
-    .block-container {
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
     }
 
     /* 2. SIDEBAR SEBAGAI NAVIGASI & FILTER INTERAKTIF (SLICER) */
