@@ -22,46 +22,93 @@ st.set_page_config(
 )
 
 # Suntikan CSS untuk mengubah tampilan dasar
+Agar tampilannya menjadi lebih hidup, cerah, modern, dan teksnya tetap super kontras (sangat mudah dibaca), kita bisa memaksimalkan suntikan CSS pada bagian st.markdown() di baris ke-26 kode Anda.
+
+Warna dasar bawaan Streamlit yang cenderung pucat akan kita ganti dengan perpaduan warna Royal/Electric Blue dan aksen cerah lainnya, serta memberikan sedikit sentuhan efek gradient dan bayangan (shadow) halus pada kotak informasi agar aplikasi Anda terlihat seperti dasbor premium.
+
+Berikut adalah bagian blok CSS (st.markdown) yang sudah disesuaikan. Anda hanya perlu mengganti baris ke-26 hingga ke-70 pada codingan Anda dengan kode di bawah ini:
+
+Python
+# Suntikan CSS untuk mengubah tampilan dasar (GANTI BARIS 26-70 DENGAN INI)
 st.markdown("""
     <style>
-    /* 1. Mengubah Background Sidebar */
+    /* 1. Mengubah Background Sidebar menjadi warna Mint-Cyan cerah yang segar */
     [data-testid="stSidebar"] {
-        background-color: #F8FAFC; /* Abu-abu sangat muda yang bersih */
-        border-right: 1px solid #E2E8F0;
-    }
-
-    /* 2. Mengubah Font dan Warna Judul Utama */
-    h1 {
-        color: #0F172A; /* Biru gelap charcoal (sangat profesional) */
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-    }
-
-    /* 3. Membuat "Card" untuk Metrik agar terlihat timbul */
-    [data-testid="stMetricValue"] {
-        background-color: #FFFFFF;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        border: 1px solid #F1F5F9;
-        color: #2563EB !important; /* Warna biru khas perusahaan IT modern */
+        background: linear-gradient(180deg, #ECFDF5 0%, #F0FDFA 100%);
+        border-right: 2px solid #CCFBF1;
     }
     
-    /* 4. Mempercantik Tombol Proses */
+    /* Membuat teks label di sidebar lebih kontras dan tegas */
+    [data-testid="stSidebar"] .stWidgetLabel p {
+        color: #0F172A !important;
+        font-weight: 600 !important;
+    }
+
+    /* 2. Mengubah Font dan Warna Judul Utama dengan warna biru laut dalam yang tegas */
+    h1 {
+        color: #1E3A8A !important; 
+        font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        background: linear-gradient(90deg, #1E40AF, #06B6D4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding-bottom: 10px;
+    }
+    
+    h2, h3 {
+        color: #0F172A !important;
+        font-weight: 700 !important;
+    }
+
+    /* 3. Membuat "Card" untuk Metrik dengan Border Cerah dan Efek Timbul */
+    [data-testid="stMetricValue"] {
+        background-color: #FFFFFF !important;
+        padding: 20px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.1), 0 4px 6px -4px rgba(6, 182, 212, 0.1) !important;
+        border: 2px solid #E0F2FE !important;
+        color: #2563EB !important; 
+        font-weight: 700 !important;
+    }
+    
+    [data-testid="stMetricLabel"] p {
+        color: #334155 !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* 4. Mempercantik Tombol Proses dengan Warna Biru Cerah (Electric Blue) */
     .stButton>button {
         width: 100%;
-        border-radius: 8px;
-        background-color: #2563EB;
-        color: white;
-        font-weight: 600;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        color: white !important;
+        font-weight: 700;
+        font-size: 1rem;
         border: none;
-        transition: 0.3s;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+        padding: 12px 24px;
+        transition: all 0.3s ease;
     }
     
     .stButton>button:hover {
-        background-color: #1E40AF; /* Warna berubah sedikit gelap saat disentuh mouse */
+        background: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+        box-shadow: 0 6px 20px 0 rgba(29, 78, 216, 0.6);
+        transform: translateY(-2px);
+        color: white !important;
         border: none;
+    }
+
+    /* 5. Mengubah styling Kotak Alert (Warning, Info, Success) agar teks di dalamnya sangat kontras */
+    .stAlert {
+        border-radius: 12px !important;
+        border-left: 6px solid !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    }
+    .stAlert p {
+        color: #0F172A !important; /* Memaksa teks di dalam alert berwarna gelap agar jelas terbaca */
+        font-weight: 500 !important;
     }
     </style>
     """, unsafe_allow_html=True)
