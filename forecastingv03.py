@@ -20,16 +20,6 @@ st.set_page_config(
     page_icon="📈",
     layout="wide"
 )
-
-# Suntikan CSS untuk mengubah tampilan dasar
-Untuk menggabungkan fungsionalitas Aplikasi Peramalan Streamlit Python yang sedang Anda bangun dengan Panduan Desain Aplikasi berbasis Excel yang Anda berikan, kita bisa menyatukan keduanya!
-
-Kita akan merombak total tampilan visual Streamlit Anda agar memiliki struktur tatanan (layout), skema warna, grafik aktual vs peramalan, serta tombol interaktif yang menyerupai aplikasi Excel Dashboard profesional / Dark Mode yang Anda sebutkan di atas.
-
-Silakan ganti blok kode CSS (st.markdown) Anda dari baris ke-26 hingga ke-70 dengan kode arsitektur dashboard aplikasi di bawah ini. Tenang, logika perhitungan peramalan (Moving Average/Exponential Smoothing), pembacaan data, dan backend codingan Anda tidak akan berubah sedikit pun:
-
-Python
-# Suntikan CSS untuk mengubah tampilan dasar (GANTI BARIS 26-70 DENGAN INI)
 st.markdown("""
     <style>
     /* 1. ATUR TAMPILAN LATAR BELAKANG GELAP MODERN (AREA DASHBOARD INTERAKTIF) */
