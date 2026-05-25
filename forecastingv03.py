@@ -22,12 +22,6 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-    /* 1. ATUR TAMPILAN LATAR BELAKANG GELAP MODERN (AREA DASHBOARD INTERAKTIF) */
-    .stApp {
-        background-color: #0F172A !important; /* Warna dasar Slate Dark */
-        color: #F8FAFC !important;
-    }
-
     /* Tanpa Gridlines Efek: Menghilangkan border luar default Streamlit yang kaku */
     .block-container {
         padding-top: 2rem !important;
