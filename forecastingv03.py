@@ -22,7 +22,12 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-    /* Tanpa Gridlines Efek: Menghilangkan border luar default Streamlit yang kaku */
+    /* 1. ATUR TAMPILAN LATAR BELAKANG GELAP MODERN (AREA DASHBOARD INTERAKTIF) */
+    .stApp {
+        background-color: #0F172A !important;
+        color: #F8FAFC !important;
+    }
+
     .block-container {
         padding-top: 2rem !important;
         padding-bottom: 2rem !important;
@@ -30,7 +35,7 @@ st.markdown("""
 
     /* 2. SIDEBAR SEBAGAI NAVIGASI & FILTER INTERAKTIF (SLICER) */
     [data-testid="stSidebar"] {
-        background-color: #1E293B !important; /* Kontras lebih terang dari background utama */
+        background-color: #1E293B !important;
         border-right: 1px solid #334155 !important;
     }
     
@@ -46,36 +51,54 @@ st.markdown("""
     /* Memaksa teks label di dalam Filter/Slicer berwarna putih/terang */
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, [data-testid="stSidebar"] .stWidgetLabel p, 
-    [data-testid="stSidebar"] p, [data-testid="stSidebar"] small {
+    [data-testid="stSidebar"] p {
         color: #F1F5F9 !important;
         font-weight: 600 !important;
     }
 
-    /* 3. TOMBOL UPLOAD DATA / IMPORT (BENTUK KOTAK SAMA SEPERTI SHAPE/VBA BUTTON) */
+    /* 3. MEROMBAK UTUH TOMBOL UPLOAD MENJADI BIRU GRADASI GLOSSY (SESUAI GAMBAR BARU) */
     [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] {
-        background-color: #1E293B !important;
-        border: 2px dashed #38BDF8 !important; /* Border Biru Cyan khas aplikasi */
-        border-radius: 8px !important;
-        padding: 12px !important;
+        background-color: #0F172A !important;
+        border: 2px dashed #334155 !important;
+        border-radius: 12px !important;
+        padding: 15px !important;
         transition: all 0.3s ease;
     }
-    [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"]:hover {
-        background-color: #0F172A !important;
-        border-color: #0EA5E9 !important;
-        transform: scale(1.01);
-    }
-    /* Mengubah tombol internal upload agar stand-out */
+    
+    /* Mengubah Tombol "Browse files" Menjadi Kapsul Biru Mengilap 3D */
     [data-testid="stSidebar"] button[data-testid="baseButton-secondary"] {
-        background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%) !important;
-        color: #0F172A !important;
-        border: none !important;
+        background: linear-gradient(180deg, #A7F3D0 0%, #4793AF 25%, #227B94 75%, #164E63 100%) !important;
+        color: #FFFFFF !important;
+        border: 1px solid #155E75 !important;
+        font-family: 'Segoe UI', Arial, sans-serif !important;
         font-weight: 800 !important;
-        border-radius: 6px !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 2px !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important;
+        border-radius: 50px !important; /* Membuat bentuk melengkung kapsul sempurna */
         width: 100% !important;
-        text-transform: uppercase;
+        padding: 10px 20px !important;
+        box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.4) !important;
+        text-transform: uppercase !important;
+        transition: all 0.2s ease-in-out !important;
     }
 
-    /* 4. HEADER / JUDUL UTAMA (MINIMALIS DENGAN INDIKATOR INDEKS) */
+    /* Efek Interaktif Saat Kursor Mouse Berada di Atas Tombol Upload */
+    [data-testid="stSidebar"] button[data-testid="baseButton-secondary"]:hover {
+        background: linear-gradient(180deg, #C6F6D5 0%, #54A3BF 25%, #2B8C9F 75%, #1A586E 100%) !important;
+        box-shadow: inset 0 2px 4px rgba(255,255,255,0.6), 0 6px 12px rgba(34,123,148,0.5) !important;
+        transform: translateY(-1px);
+        cursor: pointer;
+    }
+
+    /* Memperbaiki Warna Teks Ukuran File Bawaan Agar Terlihat Jelas di Latar Gelap */
+    [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] small,
+    [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] small {
+        color: #94A3B8 !important;
+        font-weight: 500 !important;
+    }
+
+    /* 4. BANNER JUDUL UTAMA DASHBOARD */
     h1 {
         color: #FFFFFF !important;
         background: linear-gradient(90deg, #1E293B 0%, #0F172A 100%) !important;
@@ -91,11 +114,11 @@ st.markdown("""
     }
     
     h2, h3, .stMarkdown h2 p {
-        color: #38BDF8 !important; /* Warna judul seksi (Kategori/Grafik) */
+        color: #38BDF8 !important;
         font-weight: 600 !important;
     }
 
-    /* 5. VISUAL UTAMA: KARTU WADAH GRAFIK LINE CHART & TABEL (AREA DATA) */
+    /* 5. VISUAL UTAMA: KARTU WADAH GRAFIK LINE CHART & TABEL */
     div[data-testid="stPlotlyChart"], 
     div[data-testid="stDataFrame"],
     .stTable {
@@ -107,23 +130,22 @@ st.markdown("""
         margin-bottom: 20px !important;
     }
 
-    /* 6. PENATAAN TABEL AREA DATA (SHADING WARNA BIRU MUDA KONTRAS DARK MODE) */
+    /* 6. PENATAAN TABEL AREA DATA */
     div[data-testid="stDataFrame"] iframe, 
     div[data-testid="stDataFrame"] data-grid {
         background-color: #1E293B !important; 
     }
-    /* Efek teks di dalam tabel agar tajam */
     .stDataFrame td, .stDataFrame th {
         color: #E2E8F0 !important;
     }
 
-    /* 7. INDIKATOR KPI (TOTAL PENJUALAN VS TARGET PERAMALAN) */
+    /* 7. INDIKATOR KPI */
     [data-testid="stMetricValue"] {
         background-color: #1E293B !important;
         padding: 15px 20px !important;
         border-radius: 10px !important;
         border: 1px solid #334155 !important;
-        color: #38BDF8 !important; /* Angka KPI Biru Cyan menyala */
+        color: #38BDF8 !important;
         font-weight: 800 !important;
         font-size: 2rem !important;
     }
@@ -143,9 +165,8 @@ st.markdown("""
         font-weight: 700;
         border: none;
         padding: 12px 20px;
-        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        box-shadow: 0 4px 12 rgba(14, 165, 233, 0.2);
         transition: all 0.2s;
-    End
     }
     .stButton>button:hover {
         background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
