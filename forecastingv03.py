@@ -22,14 +22,6 @@ st.set_page_config(
 )
 
 # Suntikan CSS untuk mengubah tampilan dasar
-Agar tampilannya menjadi lebih hidup, cerah, modern, dan teksnya tetap super kontras (sangat mudah dibaca), kita bisa memaksimalkan suntikan CSS pada bagian st.markdown() di baris ke-26 kode Anda.
-
-Warna dasar bawaan Streamlit yang cenderung pucat akan kita ganti dengan perpaduan warna Royal/Electric Blue dan aksen cerah lainnya, serta memberikan sedikit sentuhan efek gradient dan bayangan (shadow) halus pada kotak informasi agar aplikasi Anda terlihat seperti dasbor premium.
-
-Berikut adalah bagian blok CSS (st.markdown) yang sudah disesuaikan. Anda hanya perlu mengganti baris ke-26 hingga ke-70 pada codingan Anda dengan kode di bawah ini:
-
-Python
-# Suntikan CSS untuk mengubah tampilan dasar (GANTI BARIS 26-70 DENGAN INI)
 st.markdown("""
     <style>
     /* 1. Mengubah Background Sidebar menjadi warna Mint-Cyan cerah yang segar */
