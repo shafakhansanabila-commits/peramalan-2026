@@ -30,23 +30,21 @@ st.markdown("""
         border-right: 2px solid #E2E8F0;
     }
     
-    /* 2. MEMBUAT KOTAK BIRU KEREN UNTUK SETIAP WIDGET DI SIDEBAR */
+    /* 2. Membuat Kotak Biru Keren untuk Setiap Widget di Sidebar */
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
         background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%) !important;
         padding: 20px 15px !important;
         border-radius: 14px !important;
         border: 1px solid #BFDBFE !important;
-        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.05), 0 2px 4px -1px rgba(37, 99, 235, 0.05) !important;
+        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.05) !important;
         margin-bottom: 15px !important;
     }
     
-    /* Memastikan garis pemisah (divider) di sidebar tetap rapi */
     [data-testid="stSidebar"] hr {
         margin: 10px 0 !important;
         border-color: #BFDBFE !important;
     }
 
-    /* Memaksa teks judul/label di dalam kotak sidebar berwarna gelap agar kontras dan tegas */
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, 
@@ -73,7 +71,24 @@ st.markdown("""
         font-weight: 700 !important;
     }
 
-    /* 4. Membuat "Card" untuk Metrik Ringkasan Data */
+    /* 4. TAMPILAN TABEL DENGAN SHADING WARNA BIRU (BARU) */
+    /* Mewarnai Header Tabel menjadi Biru Navy */
+    div[data-testid="stDataFrame"] iframe, 
+    div[data-testid="stDataFrame"] data-grid,
+    .stDataFrame th {
+        background-color: #1E40AF !important;
+        color: white !important;
+    }
+    
+    /* Sentuhan custom menggunakan selector internal Streamlit Glide Data Grid */
+    div[data-testid="stDataFrame"] {
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        border: 1px solid #BFDBFE !important;
+        box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.05) !important;
+    }
+
+    /* 5. Membuat "Card" untuk Metrik Ringkasan Data */
     [data-testid="stMetricValue"] {
         background-color: #FFFFFF !important;
         padding: 20px !important;
@@ -89,7 +104,7 @@ st.markdown("""
         font-weight: 600 !important;
     }
 
-    /* 5. Mempercantik Tombol Proses Peramalan (Electric Blue) */
+    /* 6. Mempercantik Tombol Proses Peramalan (Electric Blue) */
     .stButton>button {
         width: 100%;
         border-radius: 10px;
@@ -110,7 +125,7 @@ st.markdown("""
         color: white !important;
     }
 
-    /* 6. Styling Kotak Keterangan Alert agar Teks Tetap Jelas */
+    /* 7. Styling Kotak Keterangan Alert agar Teks Tetap Jelas */
     .stAlert {
         border-radius: 12px !important;
         border-left: 6px solid !important;
