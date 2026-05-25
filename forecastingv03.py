@@ -21,7 +21,7 @@ st.set_page_config(
     layout="wide"
 )
 st.markdown("""
-  <style>
+    <style>
     /* ── IMPORT FONT ─────────────────────────────────────── */
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
  
