@@ -22,116 +22,160 @@ st.set_page_config(
 )
 
 # Suntikan CSS untuk mengubah tampilan dasar
+Untuk menggabungkan fungsionalitas Aplikasi Peramalan Streamlit Python yang sedang Anda bangun dengan Panduan Desain Aplikasi berbasis Excel yang Anda berikan, kita bisa menyatukan keduanya!
+
+Kita akan merombak total tampilan visual Streamlit Anda agar memiliki struktur tatanan (layout), skema warna, grafik aktual vs peramalan, serta tombol interaktif yang menyerupai aplikasi Excel Dashboard profesional / Dark Mode yang Anda sebutkan di atas.
+
+Silakan ganti blok kode CSS (st.markdown) Anda dari baris ke-26 hingga ke-70 dengan kode arsitektur dashboard aplikasi di bawah ini. Tenang, logika perhitungan peramalan (Moving Average/Exponential Smoothing), pembacaan data, dan backend codingan Anda tidak akan berubah sedikit pun:
+
+Python
+# Suntikan CSS untuk mengubah tampilan dasar (GANTI BARIS 26-70 DENGAN INI)
 st.markdown("""
     <style>
-    /* 1. BACKGROUND DASHBOARD UTAMA */
+    /* 1. ATUR TAMPILAN LATAR BELAKANG GELAP MODERN (AREA DASHBOARD INTERAKTIF) */
     .stApp {
-        background-color: #F8FAFC !important;
+        background-color: #0F172A !important; /* Warna dasar Slate Dark */
+        color: #F8FAFC !important;
     }
 
-    /* 2. SIDEBAR BIRU TUA MINIMALIS */
+    /* Tanpa Gridlines Efek: Menghilangkan border luar default Streamlit yang kaku */
+    .block-container {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* 2. SIDEBAR SEBAGAI NAVIGASI & FILTER INTERAKTIF (SLICER) */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1E3A8A 0%, #0F172A 100%) !important;
+        background-color: #1E293B !important; /* Kontras lebih terang dari background utama */
+        border-right: 1px solid #334155 !important;
     }
     
-    /* Kotak pembungkus menu di dalam sidebar */
+    /* Mengubah Widget Slicer/Input Parameter di Sidebar Menjadi Kotak Rapi */
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        padding: 16px !important;
-        border-radius: 12px !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        margin-bottom: 12px !important;
+        background-color: #0F172A !important;
+        padding: 18px 14px !important;
+        border-radius: 10px !important;
+        border: 1px solid #334155 !important;
+        margin-bottom: 14px !important;
     }
     
-    /* Warna teks menu di sidebar */
+    /* Memaksa teks label di dalam Filter/Slicer berwarna putih/terang */
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, [data-testid="stSidebar"] .stWidgetLabel p, 
-    [data-testid="stSidebar"] p {
-        color: #FFFFFF !important;
+    [data-testid="stSidebar"] p, [data-testid="stSidebar"] small {
+        color: #F1F5F9 !important;
         font-weight: 600 !important;
     }
 
-    /* 3. MERUBAH AREA UPLOAD MENJADI KOTAK TOMBOL KEREN (BARU) */
-    [data-testid="stSidebar"] .stFileUploader {
-        padding: 0px !important;
-    }
+    /* 3. TOMBOL UPLOAD DATA / IMPORT (BENTUK KOTAK SAMA SEPERTI SHAPE/VBA BUTTON) */
     [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] {
-        background-color: #FFFFFF !important;
-        border: 2px dashed #3B82F6 !important;
-        border-radius: 10px !important;
-        padding: 10px !important;
+        background-color: #1E293B !important;
+        border: 2px dashed #38BDF8 !important; /* Border Biru Cyan khas aplikasi */
+        border-radius: 8px !important;
+        padding: 12px !important;
         transition: all 0.3s ease;
     }
     [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"]:hover {
-        background-color: #EFF6FF !important;
-        border-color: #2563EB !important;
-        transform: scale(1.02);
+        background-color: #0F172A !important;
+        border-color: #0EA5E9 !important;
+        transform: scale(1.01);
     }
-    /* Menyembunyikan teks petunjuk bawaan yang terlalu panjang agar rapi berbentuk tombol */
-    [data-testid="stSidebar"] data-testid="stMarkdownContainer" p,
-    [data-testid="stSidebar"] section[data-testid="stFileUploaderDropzone"] small {
-        color: #1E3A8A !important;
-        font-size: 0.8rem !important;
-    }
+    /* Mengubah tombol internal upload agar stand-out */
     [data-testid="stSidebar"] button[data-testid="baseButton-secondary"] {
-        background-color: #3B82F6 !important;
-        color: white !important;
+        background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%) !important;
+        color: #0F172A !important;
         border: none !important;
-        font-weight: bold !important;
+        font-weight: 800 !important;
         border-radius: 6px !important;
         width: 100% !important;
+        text-transform: uppercase;
     }
 
-    /* 4. BANNER JUDUL UTAMA DASHBOARD */
+    /* 4. HEADER / JUDUL UTAMA (MINIMALIS DENGAN INDIKATOR INDEKS) */
     h1 {
         color: #FFFFFF !important;
-        background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%) !important;
-        padding: 16px 24px !important;
-        border-radius: 12px !important;
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-weight: 800;
+        background: linear-gradient(90deg, #1E293B 0%, #0F172A 100%) !important;
+        padding: 20px 24px !important;
+        border-radius: 10px !important;
+        border: 1px solid #334155 !important;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        font-weight: 700;
         font-size: 1.8rem !important;
-        box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15) !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 25px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    h2, h3, .stMarkdown h2 p {
+        color: #38BDF8 !important; /* Warna judul seksi (Kategori/Grafik) */
+        font-weight: 600 !important;
+    }
+
+    /* 5. VISUAL UTAMA: KARTU WADAH GRAFIK LINE CHART & TABEL (AREA DATA) */
+    div[data-testid="stPlotlyChart"], 
+    div[data-testid="stDataFrame"],
+    .stTable {
+        background-color: #1E293B !important;
+        padding: 20px !important;
+        border-radius: 12px !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
         margin-bottom: 20px !important;
     }
 
-    /* 5. TAMPILAN TABEL DENGAN WARNA BIRU MUDA SEGAR (BARU) */
-    div[data-testid="stDataFrame"] {
-        border-radius: 10px !important;
-        overflow: hidden !important;
-        border: 1px solid #93C5FD !important;
-        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.05) !important;
-    }
-    /* Mewarnai baris tabel selang-seling dengan nuansa Biru Muda Mulus */
+    /* 6. PENATAAN TABEL AREA DATA (SHADING WARNA BIRU MUDA KONTRAS DARK MODE) */
     div[data-testid="stDataFrame"] iframe, 
     div[data-testid="stDataFrame"] data-grid {
-        background-color: #F0F9FF !important; 
+        background-color: #1E293B !important; 
+    }
+    /* Efek teks di dalam tabel agar tajam */
+    .stDataFrame td, .stDataFrame th {
+        color: #E2E8F0 !important;
     }
 
-    /* 6. TOMBOL PROSES HIJAU EMERALD */
+    /* 7. INDIKATOR KPI (TOTAL PENJUALAN VS TARGET PERAMALAN) */
+    [data-testid="stMetricValue"] {
+        background-color: #1E293B !important;
+        padding: 15px 20px !important;
+        border-radius: 10px !important;
+        border: 1px solid #334155 !important;
+        color: #38BDF8 !important; /* Angka KPI Biru Cyan menyala */
+        font-weight: 800 !important;
+        font-size: 2rem !important;
+    }
+    [data-testid="stMetricLabel"] p {
+        color: #94A3B8 !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        font-size: 0.8rem !important;
+    }
+
+    /* 8. TOMBOL EKSEKUSI UTAMA (PROSES PERAMALAN) */
     .stButton>button {
         width: 100%;
         border-radius: 8px;
-        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        background: linear-gradient(135deg, #0EA5E9 0%, #2563EB 100%);
         color: white !important;
         font-weight: 700;
         border: none;
-        padding: 10px 20px;
-        box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+        padding: 12px 20px;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        transition: all 0.2s;
+    End
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
         transform: translateY(-1px);
     }
 
-    /* 7. NOTIFIKASI / ALERT BOX */
+    /* 9. NOTIFIKASI INFORMASI (ALERT BOX) */
     .stAlert {
         border-radius: 10px !important;
-        border-left: 5px solid #3B82F6 !important;
-        background-color: #EFF6FF !important;
+        background-color: #1E293B !important;
+        border: 1px solid #38BDF8 !important;
     }
     .stAlert p {
-        color: #1E3A8A !important;
+        color: #38BDF8 !important;
     }
     </style>
     """, unsafe_allow_html=True)
