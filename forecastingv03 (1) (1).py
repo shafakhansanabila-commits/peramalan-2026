@@ -24,47 +24,88 @@ st.set_page_config(
 # Suntikan CSS - VIBRANT COLORFUL LIGHT STYLE
 st.markdown("""
     <style>
-    /* 1. Fondasi Font & Background Utama Cerah */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-    
-    html, body, [class*="st-"], .stMarkdown, p, span, label {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
+    /* 1. Latar Belakang Utama */
+    .stApp {
+        background-color: #0b0f19 !important;
+        background-image: radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.4) 0, transparent 50%), 
+                          radial-gradient(at 50% 0%, rgba(79, 70, 229, 0.1) 0, transparent 50%) !important;
     }
 
-    /* Kustomisasi Warna Judul Utama (#F4C2C1) */
-    .stApp h1 {
-        color: #F4C2C1 !important;
-        font-weight: 800 !important;
+    /* 2. Styling Wadah Konten & Dataframe (Tabel) */
+    [data-testid="stDataFrame"], 
+    div[data-testid="stElementContainer"] div[data-style="border"],
+    .stCustomBlockContainer {
+        background-color: #131c2e !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+    }
+    
+    /* 3. Tipografi Aman (Menghindari Teks Hilang) */
+    h1, h2, h3, h4, .stMarkdown p, label [data-testid="stMarkdownContainer"] p {
+        color: #f1f5f9 !important; 
+        font-family: 'Inter', 'Segoe UI', sans-serif !important;
+    }
+    
+    /* Judul Utama dengan Gradien Colorful */
+    .main-title {
         font-size: 2.3rem !important;
-        margin-bottom: 8px !important;
-        padding-right: 180px; /* Memberi ruang agar tidak tabrakan dengan logo di kanan */
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        padding-top: 10px;
     }
 
-    /* Kustomisasi Warna Tabel Berwarna #F5A4C8 */
-    .stDataFrame, div[data-testid="stDataFrame"], [data-testid="stDataFrame"] data-gsc-container {
-        background-color: #F5A4C8 !important;
-        border-radius: 12px;
+    /* 4. Panel Kontrol Kiri (Sidebar) */
+    [data-testid="stSidebar"] {
+        background-color: #070a12 !important;
+        border-right: 1px solid rgba(99, 102, 241, 0.15) !important;
     }
     
-    /* Memaksa isi teks/grid di dalam tabel menyesuaikan kontras background baru */
-    div[data-testid="stDataFrame"] * {
-        color: #1e1b4b !important; 
+    /* Memastikan teks di dalam sidebar tetap terlihat jelas */
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] label {
+        color: #f8fafc !important;
     }
 
-    /* Kontainer Pemosisian Logo di Pojok Kanan Atas secara Absolute */
-    .logo-container {
-        position: absolute;
-        top: -65px;
-        right: 10px;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        z-index: 999;
+    /* 5. Tombol Utama (Gradien & Efek Hover Modern) */
+    button[kind="primary"] {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 0.5rem 1.5rem !important;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+        transition: all 0.2s ease !important;
     }
-    .logo-container img {
-        height: 60px; /* Mengatur tinggi logo agar proporsional */
-        width: auto;
-        object-fit: contain;
+    
+    button[kind="primary"]:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4) !important;
+    }
+
+    /* 6. Tabs Navigasi Modern */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background-color: rgba(255, 255, 255, 0.03);
+        padding: 6px;
+        border-radius: 10px;
+        border-bottom: none !important;
+    }
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 6px !important;
+        color: #94a3b8 !important;
+        padding: 8px 16px !important;
+        border-bottom: none !important;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
     }
     </style>
 """, unsafe_allow_html=True)
