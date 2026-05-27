@@ -32,19 +32,19 @@ st.markdown("""
     }
     
     .main {
-        background: linear-gradient(135deg, #F5F7FF 0%, #FAFAFA 100%) !important;
+        background: linear-gradient(135deg, #E01861 0%, #DE3064 100%) !important;
     }
 
     /* 2. Sidebar Cerah & Segar */
     [data-testid="stSidebar"] {
-        background-color: #FFFFFF !important;
-        border-right: 2px solid #E0E4FF !important;
+        background-color: #F3809D !important;
+        border-right: 2px solid #F19CBB !important;
     }
     
     [data-testid="stSidebar"] label,
     [data-testid="stSidebar"] .stWidgetLabel p,
     [data-testid="stSidebar"] p {
-        color: #4A5568 !important;
+        color: #F5A4C8 !important;
         font-weight: 600 !important;
         font-size: 0.9rem !important;
     }
@@ -52,10 +52,10 @@ st.markdown("""
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3 {
-        color: #4F46E5 !important;
+        color: #F5A4C8 !important;
         font-weight: 700 !important;
         font-size: 1.1rem !important;
-        border-bottom: 2px solid #F0F2FF;
+        border-bottom: 2px solid #F19CBB;
         padding-bottom: 8px;
         margin-top: 20px !important;
         letter-spacing: 0.5px;
@@ -63,14 +63,14 @@ st.markdown("""
 
     /* 3. Layout Uploader Colorful */
     [data-testid="stFileUploader"] {
-        background-color: #F0F4FF !important;
-        border: 2px dashed #6366F1 !important;
+        background-color: #F3809D !important;
+        border: 2px dashed #F189B8 !important;
         border-radius: 12px !important;
         padding: 15px !important;
     }
 
     [data-testid="stFileUploader"] button {
-        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
+        background: linear-gradient(135deg, #F189B8 0%, #F3809D 100%) !important;
         border: none !important;
         border-radius: 8px !important;
         padding: 8px 16px !important;
@@ -85,23 +85,23 @@ st.markdown("""
     
     [data-testid="stFileUploader"] button::after {
         content: "Pilih File Kamu" !important;
-        color: #FFFFFF !important;
+        color: #F5A4C8 !important;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
         display: block !important;
     }
 
     [data-testid="stFileUploader"] text {
-        fill: #4F46E5 !important;
+        fill: #F5A4C8 !important;
     }
     [data-testid="stFileUploader"] div {
-        color: #4A5568 !important;
+        color: #F5A4C8 !important;
         font-weight: 500;
     }
 
     /* 4. Area Konten Utama */
     .main h1 {
-        background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
+        background: linear-gradient(135deg, #E01861 0%, #DE3064 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800 !important;
@@ -110,7 +110,7 @@ st.markdown("""
     }
     
     .main p {
-        color: #64748B !important;
+        color: #F5A4C8 !important;
         font-weight: 500;
     }
 
