@@ -31,17 +31,9 @@ st.markdown("""
         font-family: 'Plus Jakarta Sans', sans-serif !important;
     }
     
+    /* Memaksa background utama menjadi gelap elegan agar teks pastel terlihat tajam */
     .stApp {
         background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
-    }
-
-    /* Kustomisasi Warna Judul Utama (#F4C2C1) */
-    .stApp h1 {
-        color: #F4C2C1 !important;
-        font-weight: 800 !important;
-        font-size: 2.3rem !important;
-        margin-bottom: 8px !important;
-        padding-right: 160px; /* Memberi ruang agar tidak tabrakan dengan logo di kanan */
     }
 
     /* 2. Sidebar Cerah & Segar */
@@ -109,7 +101,7 @@ st.markdown("""
     }
 
     /* 4. Area Konten Utama */
-    .stApp h2, .stApp h3 {
+    .stApp h1, .stApp h2, .stApp h3 {
         color: #ffffff !important;
         font-weight: 800 !important;
     }
@@ -141,7 +133,7 @@ st.markdown("""
         margin-left: 5px !important;
     }
 
-    /* 6. Tombol Utama Pro */
+    /* 6. Tombol Utama Pro (Neon/Bright Coral Style) */
     .stButton>button {
         width: 100%;
         border-radius: 8px;
@@ -161,16 +153,11 @@ st.markdown("""
         background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%) !important;
     }
 
-    /* 7. Kustomisasi Warna Tabel Berwarna #F5A4C8 */
-    .stDataFrame, div[data-testid="stDataFrame"], [data-testid="stDataFrame"] data-gsc-container {
-        background-color: #F5A4C8 !important;
-        border: 2px solid #e08ba sub !important;
+    /* 7. Desain Tabel Data Grid */
+    .stDataFrame, div[data-testid="stDataFrame"] {
+        background-color: #1e1e38 !important;
+        border: 2px solid #2e2d56 !important;
         border-radius: 12px;
-    }
-    
-    /* Memaksa isi teks/grid di dalam tabel menyesuaikan kontras background baru */
-    div[data-testid="stDataFrame"] * {
-        color: #1e1b4b !important; 
     }
 
     /* Customisasi Tabs Streamlit agar Colorful */
@@ -186,22 +173,6 @@ st.markdown("""
     hr {
         margin: 1.5rem 0 !important;
         border-color: #2e2d56 !important;
-    }
-
-    /* Kontainer Pemosisian Logo di Pojok Kanan Atas */
-    .logo-container {
-        position: absolute;
-        top: -50px;
-        right: 10px;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        z-index: 999;
-    }
-    .logo-container img {
-        height: 55px; /* Mengatur tinggi logo agar proporsional */
-        width: auto;
-        object-fit: contain;
     }
     </style>
 """, unsafe_allow_html=True)
