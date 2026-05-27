@@ -22,6 +22,12 @@ st.set_page_config(
 )
 
 # Suntikan CSS - VIBRANT COLORFUL LIGHT STYLE
+st.markdown(f"""
+        <div class="logo-container">
+            <img src="data:image/png;base64,{logo1_base64}" alt="LOGO ELITE 1">
+            <img src="data:image/png;base64,{logo2_base64}" alt="LOGO GUNDAR">
+        </div>
+    """, unsafe_allow_html=True)
 st.markdown("""
     <style>
     /* 1. Fondasi Font & Background Utama Cerah */
