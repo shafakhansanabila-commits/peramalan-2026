@@ -24,59 +24,66 @@ st.set_page_config(
 # Suntikan CSS - VIBRANT COLORFUL LIGHT STYLE
 st.markdown("""
     <style>
-    /* 1. Fondasi Font & Background Utama Cerah/Bersih */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap');
+    /* 1. Fondasi Font & Background Utama Cerah */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
     
-    html, body, [class*="st-"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+    html, body, [class*="st-"], .stMarkdown, p, span, label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
     }
     
-    /* Mengubah background utama menjadi putih/abu-abu sangat terang */
-    .main {
-        background: #F8FAFC !important;
+    .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
     }
 
-    /* 2. Sidebar dengan Aksen Gradasi Pink-Violet Soft */
+    /* Kustomisasi Warna Judul Utama (#F4C2C1) */
+    .stApp h1 {
+        color: #F4C2C1 !important;
+        font-weight: 800 !important;
+        font-size: 2.3rem !important;
+        margin-bottom: 8px !important;
+        padding-right: 160px; /* Memberi ruang agar tidak tabrakan dengan logo di kanan */
+    }
+
+    /* 2. Sidebar Cerah & Segar */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #FFF0F5 0%, #F5E6FF 100%) !important;
-        border-right: 1px solid #E2E8F0 !important;
+        background-color: #1e1e38 !important;
+        border-right: 2px solid #2e2d56 !important;
     }
     
-    /* Warna Label Input di Sidebar agar Kontras (Abu-abu Tua) */
     [data-testid="stSidebar"] label,
     [data-testid="stSidebar"] .stWidgetLabel p,
     [data-testid="stSidebar"] p {
-        color: #334155 !important;
+        color: #f1f5f9 !important;
         font-weight: 600 !important;
         font-size: 0.9rem !important;
     }
 
-    /* Judul Section di Sidebar */
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3 {
-        color: #4F46E5 !important; /* Indigo */
+        color: #f472b6 !important;
         font-weight: 700 !important;
         font-size: 1.1rem !important;
-        border-bottom: 2px solid #E2E8F0;
+        border-bottom: 2px solid #2e2d56;
         padding-bottom: 8px;
         margin-top: 20px !important;
         letter-spacing: 0.5px;
     }
 
-    /* 3. Layout Uploader */
+    /* 3. Layout Uploader Colorful */
     [data-testid="stFileUploader"] {
-        background-color: #FFFFFF !important;
-        border: 2px dashed #CBD5E1 !important;
+        background-color: #252448 !important;
+        border: 2px dashed #f472b6 !important;
         border-radius: 12px !important;
         padding: 15px !important;
     }
 
     [data-testid="stFileUploader"] button {
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        background: linear-gradient(135deg, #ec4899 0%, #db2777 100%) !important;
         border: none !important;
         border-radius: 8px !important;
         padding: 8px 16px !important;
+        box-shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.2) !important;
     }
     
     [data-testid="stFileUploader"] button * {
@@ -87,52 +94,48 @@ st.markdown("""
     
     [data-testid="stFileUploader"] button::after {
         content: "Pilih File Kamu" !important;
-        color: #FFFFFF !important;
+        color: #ffffff !important;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
         display: block !important;
     }
 
     [data-testid="stFileUploader"] text {
-        fill: #64748B !important;
+        fill: #e2e8f0 !important;
     }
     [data-testid="stFileUploader"] div {
-        color: #64748B !important;
+        color: #e2e8f0 !important;
         font-weight: 500;
     }
 
     /* 4. Area Konten Utama */
-    .main h1 {
-        background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .stApp h2, .stApp h3 {
+        color: #ffffff !important;
         font-weight: 800 !important;
-        font-size: 2.3rem !important;
-        margin-bottom: 8px !important;
     }
     
-    .main p {
-        color: #475569 !important;
+    .stApp p, .stMarkdown p {
+        color: #cbd5e1 !important;
         font-weight: 500;
     }
 
-    /* 5. Metric Cards */
+    /* 5. Metric Cards Penuh Warna Pastel */
     [data-testid="stMetricValue"] {
-        background: #FFFFFF !important;
-        color: #1E1B4B !important;
+        background: #1e1e38 !important;
+        color: #ffffff !important;
         font-weight: 700 !important;
         font-size: 2rem !important;
         border-radius: 12px !important;
         padding: 15px 20px !important;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
-        border-left: 5px solid #EC4899 !important;
-        border-top: 1px solid #EEF2F6 !important;
-        border-right: 1px solid #EEF2F6 !important;
-        border-bottom: 1px solid #EEF2F6 !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3) !important;
+        border-left: 5px solid #ec4899 !important;
+        border-top: 1px solid #2e2d56 !important;
+        border-right: 1px solid #2e2d56 !important;
+        border-bottom: 1px solid #2e2d56 !important;
     }
     
     [data-testid="stMetricLabel"] {
-        color: #4F46E5 !important;
+        color: #f472b6 !important;
         font-weight: 700 !important;
         font-size: 0.9rem !important;
         margin-left: 5px !important;
@@ -142,46 +145,66 @@ st.markdown("""
     .stButton>button {
         width: 100%;
         border-radius: 8px;
-        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
+        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%) !important;
         color: #FFFFFF !important;            
         font-weight: 700 !important;          
         font-size: 1rem;
         padding: 0.65rem 1rem;
         border: none !important;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
         transition: all 0.2s ease;
     }
     
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
-        background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%) !important;
+        box-shadow: 0 6px 15px rgba(236, 72, 153, 0.6);
+        background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%) !important;
     }
 
-    /* 7. Desain Tabel Data Grid */
-    .stDataFrame {
-        background-color: #FFFFFF;
-        border: 1px solid #E2E8F0 !important;
+    /* 7. Kustomisasi Warna Tabel Berwarna #F5A4C8 */
+    .stDataFrame, div[data-testid="stDataFrame"], [data-testid="stDataFrame"] data-gsc-container {
+        background-color: #F5A4C8 !important;
+        border: 2px solid #e08ba sub !important;
         border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+    
+    /* Memaksa isi teks/grid di dalam tabel menyesuaikan kontras background baru */
+    div[data-testid="stDataFrame"] * {
+        color: #1e1b4b !important; 
     }
 
+    /* Customisasi Tabs Streamlit agar Colorful */
     button[data-baseweb="tab"] {
         font-weight: 700 !important;
-        color: #64748B !important;
+        color: #94a3b8 !important;
     }
     button[data-baseweb="tab"][aria-selected="true"] {
-        color: #4F46E5 !important;
-        border-bottom-color: #4F46E5 !important;
+        color: #f472b6 !important;
+        border-bottom-color: #f472b6 !important;
     }
 
     hr {
         margin: 1.5rem 0 !important;
-        border-color: #E2E8F0 !important;
+        border-color: #2e2d56 !important;
+    }
+
+    /* Kontainer Pemosisian Logo di Pojok Kanan Atas */
+    .logo-container {
+        position: absolute;
+        top: -50px;
+        right: 10px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        z-index: 999;
+    }
+    .logo-container img {
+        height: 55px; /* Mengatur tinggi logo agar proporsional */
+        width: auto;
+        object-fit: contain;
     }
     </style>
-    """, unsafe_allow_html=True)
-
+""", unsafe_allow_html=True)
 # --- FUNGSI PROSES DAN PERHITUNGAN DASAR ---
 
 def clean_numeric_series(series: pd.Series) -> pd.Series:
