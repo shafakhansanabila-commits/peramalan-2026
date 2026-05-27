@@ -24,57 +24,59 @@ st.set_page_config(
 # Suntikan CSS - VIBRANT COLORFUL LIGHT STYLE
 st.markdown("""
     <style>
-    /* 1. Fondasi Font & Background Utama Cerah */
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    /* 1. Fondasi Font & Background Utama Cerah/Bersih */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap');
     
     html, body, [class*="st-"] {
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
+    /* Mengubah background utama menjadi putih/abu-abu sangat terang */
     .main {
-        background: linear-gradient(135deg, #E01861 0%, #DE3064 100%) !important;
+        background: #F8FAFC !important;
     }
 
-    /* 2. Sidebar Cerah & Segar */
+    /* 2. Sidebar dengan Aksen Gradasi Pink-Violet Soft */
     [data-testid="stSidebar"] {
-        background-color: #F3809D !important;
-        border-right: 2px solid #F19CBB !important;
+        background: linear-gradient(180deg, #FFF0F5 0%, #F5E6FF 100%) !important;
+        border-right: 1px solid #E2E8F0 !important;
     }
     
+    /* Warna Label Input di Sidebar agar Kontras (Abu-abu Tua) */
     [data-testid="stSidebar"] label,
     [data-testid="stSidebar"] .stWidgetLabel p,
     [data-testid="stSidebar"] p {
-        color: #F5A4C8 !important;
+        color: #334155 !important;
         font-weight: 600 !important;
         font-size: 0.9rem !important;
     }
 
+    /* Judul Section di Sidebar */
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3 {
-        color: #F5A4C8 !important;
+        color: #4F46E5 !important; /* Indigo */
         font-weight: 700 !important;
         font-size: 1.1rem !important;
-        border-bottom: 2px solid #F19CBB;
+        border-bottom: 2px solid #E2E8F0;
         padding-bottom: 8px;
         margin-top: 20px !important;
         letter-spacing: 0.5px;
     }
 
-    /* 3. Layout Uploader Colorful */
+    /* 3. Layout Uploader */
     [data-testid="stFileUploader"] {
-        background-color: #F3809D !important;
-        border: 2px dashed #F189B8 !important;
+        background-color: #FFFFFF !important;
+        border: 2px dashed #CBD5E1 !important;
         border-radius: 12px !important;
         padding: 15px !important;
     }
 
     [data-testid="stFileUploader"] button {
-        background: linear-gradient(135deg, #F189B8 0%, #F3809D 100%) !important;
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
         border: none !important;
         border-radius: 8px !important;
         padding: 8px 16px !important;
-        box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2) !important;
     }
     
     [data-testid="stFileUploader"] button * {
@@ -85,23 +87,23 @@ st.markdown("""
     
     [data-testid="stFileUploader"] button::after {
         content: "Pilih File Kamu" !important;
-        color: #F5A4C8 !important;
+        color: #FFFFFF !important;
         font-size: 0.85rem !important;
         font-weight: 600 !important;
         display: block !important;
     }
 
     [data-testid="stFileUploader"] text {
-        fill: #F5A4C8 !important;
+        fill: #64748B !important;
     }
     [data-testid="stFileUploader"] div {
-        color: #F5A4C8 !important;
+        color: #64748B !important;
         font-weight: 500;
     }
 
     /* 4. Area Konten Utama */
     .main h1 {
-        background: linear-gradient(135deg, #E01861 0%, #DE3064 100%);
+        background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800 !important;
@@ -110,11 +112,11 @@ st.markdown("""
     }
     
     .main p {
-        color: #F5A4C8 !important;
+        color: #475569 !important;
         font-weight: 500;
     }
 
-    /* 5. Metric Cards Penuh Warna Pastel */
+    /* 5. Metric Cards */
     [data-testid="stMetricValue"] {
         background: #FFFFFF !important;
         color: #1E1B4B !important;
@@ -136,36 +138,34 @@ st.markdown("""
         margin-left: 5px !important;
     }
 
-    /* 6. Tombol Utama Pro (Neon/Bright Coral Style) */
+    /* 6. Tombol Utama Pro */
     .stButton>button {
         width: 100%;
         border-radius: 8px;
-        background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 100%) !important;
+        background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%) !important;
         color: #FFFFFF !important;            
         font-weight: 700 !important;          
         font-size: 1rem;
         padding: 0.65rem 1rem;
         border: none !important;
-        box-shadow: 0 4px 12px rgba(255, 75, 75, 0.3);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
         transition: all 0.2s ease;
     }
     
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(255, 75, 75, 0.4);
-        background: linear-gradient(135deg, #FF6B6B 0%, #FF4B4B 100%) !important;
-        color: #FFFFFF !important;            
+        box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+        background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%) !important;
     }
 
     /* 7. Desain Tabel Data Grid */
     .stDataFrame {
         background-color: #FFFFFF;
-        border: 2px solid #F0F2FF !important;
+        border: 1px solid #E2E8F0 !important;
         border-radius: 12px;
         box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
     }
 
-    /* Customisasi Tabs Streamlit agar Colorful */
     button[data-baseweb="tab"] {
         font-weight: 700 !important;
         color: #64748B !important;
