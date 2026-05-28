@@ -24,91 +24,164 @@ st.set_page_config(
 # Suntikan CSS - VIBRANT COLORFUL LIGHT STYLE
 st.markdown("""
     <style>
-    /* 1. Latar Belakang Utama */
-    .stApp {
-        background-color: #0b0f19 !important;
-        background-image: radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.4) 0, transparent 50%), 
-                          radial-gradient(at 50% 0%, rgba(79, 70, 229, 0.1) 0, transparent 50%) !important;
-    }
-
-    /* 2. Styling Wadah Konten & Dataframe (Tabel) */
-    [data-testid="stDataFrame"], 
-    div[data-testid="stElementContainer"] div[data-style="border"],
-    .stCustomBlockContainer {
-        background-color: #131c2e !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 12px !important;
+    /* 1. Fondasi Font & Background Utama Cerah */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    
+    html, body, [class*="st-"] {
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
-    /* 3. Tipografi Aman (Menghindari Teks Hilang) */
-    h1, h2, h3, h4, .stMarkdown p, label [data-testid="stMarkdownContainer"] p {
-        color: #f1f5f9 !important; 
-        font-family: 'Inter', 'Segoe UI', sans-serif !important;
-    }
-    
-    /* Judul Utama dengan Gradien Colorful */
-    .main-title {
-        font-size: 2.3rem !important;
-        font-weight: 800 !important;
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 15px;
-        padding-top: 10px;
+    .main {
+        background: linear-gradient(135deg, #F5F7FF 0%, #FAFAFA 100%) !important;
     }
 
-    /* 4. Panel Kontrol Kiri (Sidebar) */
+    /* 2. Sidebar Cerah & Segar */
     [data-testid="stSidebar"] {
-        background-color: #070a12 !important;
-        border-right: 1px solid rgba(99, 102, 241, 0.15) !important;
+        background-color: #FFFFFF !important;
+        border-right: 2px solid #E0E4FF !important;
     }
     
-    /* Memastikan teks di dalam sidebar tetap terlihat jelas */
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] .stWidgetLabel p,
+    [data-testid="stSidebar"] p {
+        color: #4A5568 !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+    }
+
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
-    [data-testid="stSidebar"] h3, 
-    [data-testid="stSidebar"] label {
-        color: #f8fafc !important;
+    [data-testid="stSidebar"] h3 {
+        color: #4F46E5 !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        border-bottom: 2px solid #F0F2FF;
+        padding-bottom: 8px;
+        margin-top: 20px !important;
+        letter-spacing: 0.5px;
     }
 
-    /* 5. Tombol Utama (Gradien & Efek Hover Modern) */
-    button[kind="primary"] {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        border-radius: 8px !important;
+    /* 3. Layout Uploader Colorful */
+    [data-testid="stFileUploader"] {
+        background-color: #F0F4FF !important;
+        border: 2px dashed #6366F1 !important;
+        border-radius: 12px !important;
+        padding: 15px !important;
+    }
+
+    [data-testid="stFileUploader"] button {
+        background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%) !important;
         border: none !important;
-        padding: 0.5rem 1.5rem !important;
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
-        transition: all 0.2s ease !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2) !important;
     }
     
-    button[kind="primary"]:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4) !important;
+    [data-testid="stFileUploader"] button * {
+        font-size: 0px !important;
+        color: transparent !important;
+        display: none !important;
+    }
+    
+    [data-testid="stFileUploader"] button::after {
+        content: "Choose Your File" !important;
+        color: #FFFFFF !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        display: block !important;
     }
 
-    /* 6. Tabs Navigasi Modern */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: rgba(255, 255, 255, 0.03);
-        padding: 6px;
-        border-radius: 10px;
-        border-bottom: none !important;
+    [data-testid="stFileUploader"] text {
+        fill: #4F46E5 !important;
     }
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 6px !important;
-        color: #94a3b8 !important;
-        padding: 8px 16px !important;
-        border-bottom: none !important;
+    [data-testid="stFileUploader"] div {
+        color: #4A5568 !important;
+        font-weight: 500;
     }
-    .stTabs [aria-selected="true"] {
-        background-color: #4f46e5 !important;
-        color: #ffffff !important;
-        font-weight: 600 !important;
+
+    /* 4. Area Konten Utama */
+    .main h1 {
+        background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800 !important;
+        font-size: 2.3rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .main p {
+        color: #64748B !important;
+        font-weight: 500;
+    }
+
+    /* 5. Metric Cards Penuh Warna Pastel */
+    [data-testid="stMetricValue"] {
+        background: #FFFFFF !important;
+        color: #1E1B4B !important;
+        font-weight: 700 !important;
+        font-size: 2rem !important;
+        border-radius: 12px !important;
+        padding: 15px 20px !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+        border-left: 5px solid #EC4899 !important;
+        border-top: 1px solid #EEF2F6 !important;
+        border-right: 1px solid #EEF2F6 !important;
+        border-bottom: 1px solid #EEF2F6 !important;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #4F46E5 !important;
+        font-weight: 700 !important;
+        font-size: 0.9rem !important;
+        margin-left: 5px !important;
+    }
+
+    /* 6. Tombol Utama Pro (Neon/Bright Coral Style) */
+    .stButton>button {
+        width: 100%;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #FF4B4B 0%, #FF6B6B 100%) !important;
+        color: #FFFFFF !important;            
+        font-weight: 700 !important;          
+        font-size: 1rem;
+        padding: 0.65rem 1rem;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(255, 75, 75, 0.3);
+        transition: all 0.2s ease;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 75, 75, 0.4);
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF4B4B 100%) !important;
+        color: #FFFFFF !important;            
+    }
+
+    /* 7. Desain Tabel Data Grid */
+    .stDataFrame {
+        background-color: #FFFFFF;
+        border: 2px solid #F0F2FF !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+
+    /* Customisasi Tabs Streamlit agar Colorful */
+    button[data-baseweb="tab"] {
+        font-weight: 700 !important;
+        color: #64748B !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #4F46E5 !important;
+        border-bottom-color: #4F46E5 !important;
+    }
+
+    hr {
+        margin: 1.5rem 0 !important;
+        border-color: #E2E8F0 !important;
     }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+
 # --- FUNGSI PROSES DAN PERHITUNGAN DASAR ---
 
 def clean_numeric_series(series: pd.Series) -> pd.Series:
@@ -525,27 +598,27 @@ def convert_df_to_excel(df):
 
 # --- INTERFACE UTAMA DASHBOARD ---
 
-st.title("✨ Dashboard Peramalan Data Historis")
-st.write("Aplikasi analitik interaktif berbasis sains data untuk menghitung peramalan tingkat lanjut.")
+st.title("✨ Predictive Production Planning for MSMEs")
+st.write("An interactive data science–based analytics application for advanced forecasting")
 
 if not STATSMODELS_AVAILABLE:
     st.warning("⚠️ Library statsmodels belum tersedia. Metode Exponential Smoothing dan ARIMA memakai fallback Naive Forecast.")
 
 with st.sidebar:
-    st.header("🔮 Pengaturan Input")
-    uploaded_file = st.file_uploader("Upload data historis (.csv / .xlsx)", type=["csv", "xlsx"])
+    st.header("🔮 Input Settings")
+    uploaded_file = st.file_uploader("Upload Historical Data (.csv / .xlsx)", type=["csv", "xlsx"])
     st.divider()
 
-    st.header("⚙️ Pengaturan Evaluasi")
-    test_percentage = st.slider("Persentase data uji (%)", min_value=10, max_value=50, value=20, step=5)
-    future_horizon = st.number_input("Jumlah periode ke depan", min_value=1, max_value=60, value=6, step=1)
-    mode = st.radio("Mode Perhitungan", ["Satu metode", "Bandingkan semua metode"])
-    selected_method = st.selectbox("Pilih Metode Utama", list(FORECAST_METHODS.keys()))
+    st.header("⚙️ Evaluation Settings")
+    test_percentage = st.slider("Test Data Percentage (%)", min_value=10, max_value=50, value=20, step=5)
+    future_horizon = st.number_input("Number of Future Periods", min_value=1, max_value=60, value=6, step=1)
+    mode = st.radio("Calculation Mode", ["Single Method", "Compare All Methods"])
+    selected_method = st.selectbox("Select Primary Method", list(FORECAST_METHODS.keys()))
     st.divider()
 
-    st.header("🛠️ Parameter Tambahan")
+    st.header("🛠️ Additional Parameters")
     st.write("**Exponential Smoothing Parameters**")
-    smoothing_mode = st.radio("Metode Penyetelan", ["Optimasi otomatis", "Input manual"])
+    smoothing_mode = st.radio("Tuning Method", ["Automatic Optimization", "Manual Input"])
 
     if smoothing_mode == "Input manual":
         alpha_input = st.slider("Alpha (Level)", min_value=0.01, max_value=0.99, value=0.30, step=0.01)
@@ -555,23 +628,23 @@ with st.sidebar:
         alpha_input = beta_input = gamma_input = None
 
     ma_window = st.number_input("Window Moving Average", min_value=2, max_value=24, value=3, step=1)
-    wma_weight_text = st.text_input("Bobot WMA (Pisahkan koma)", value="0.2, 0.3, 0.5")
-    seasonal_periods = st.number_input("Seasonal Periods (Musiman)", min_value=2, max_value=52, value=12, step=1)
+    wma_weight_text = st.text_input("Bobot WMA (Comma Separator)", value="0.2, 0.3, 0.5")
+    seasonal_periods = st.number_input("Seasonal Periods (Seasonal)", min_value=2, max_value=52, value=12, step=1)
 
     st.write("**ARIMA Parameters (p, d, q)**")
     arima_p = st.number_input("Order p (AR)", min_value=0, max_value=5, value=1, step=1)
     arima_d = st.number_input("Order d (I)", min_value=0, max_value=2, value=1, step=1)
     arima_q = st.number_input("Order q (MA)", min_value=0, max_value=5, value=1, step=1)
 
-    process_button = st.button("🚀 Jalankan Proses", type="primary")
+    process_button = st.button("🚀 Run Process", type="primary")
 
 
 if uploaded_file is None:
-    st.info("💡 Petunjuk: Silakan unggah berkas excel atau csv kamu di panel bagian kiri untuk memulai analisis.")
-    st.subheader("📋 Contoh Struktur Tabel Excel/CSV yang Benar")
+    st.info("💡 Instruction: Please upload your Excel or CSV file in the left panel to start the analysis.")
+    st.subheader("📋 Example of a Proper Excel/CSV Table Structure")
     sample = pd.DataFrame({
-        "Tanggal": pd.date_range("2024-01-01", periods=12, freq="MS"),
-        "Penjualan": [120, 135, 128, 140, 150, 160, 155, 170, 180, 175, 190, 200]
+        "Date": pd.date_range("2024-01-01", periods=12, freq="MS"),
+        "Sales": [120, 135, 128, 140, 150, 160, 155, 170, 180, 175, 190, 200]
     })
     preview_df = sample.copy()
     preview_df.insert(0, "No", range(1, len(preview_df) + 1))
@@ -586,9 +659,14 @@ except Exception as e:
 if df_raw.empty:
     st.error("File tidak memiliki data."); st.stop()
 
-st.subheader("📊 Pratinjau Data Unggahan")
+st.subheader("📊 Uploaded Data Preview")
 preview_df = df_raw.head(20).copy()
-preview_df.insert(0, "No", range(1, len(preview_df) + 1))
+# Cek apakah kolom "No" sudah ada sebelum menambahkannya
+if "No" not in preview_df.columns:
+    preview_df.insert(0, "No", range(1, len(preview_df) + 1))
+else:
+    # Jika sudah ada, gunakan yang sudah ada atau lewati
+    pass
 st.dataframe(preview_df, use_container_width=True, hide_index=True)
 
 columns = df_raw.columns.tolist()
